@@ -44,6 +44,9 @@ server.get("/",(req,res) => {
         res.render('index',{array:imageb64});
     });
 });
+server.get("/:search",(req,res) => {
+    
+});
 
 const port = server.get('port');
 server.listen(port,() => {
