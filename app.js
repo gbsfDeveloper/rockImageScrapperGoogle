@@ -40,12 +40,13 @@ server.set('view engine','ejs');
 
 // Routes
 server.get("/",(req,res) => {
-    getImage("test",20).then(function(imageb64){
-        res.render('index',{array:imageb64});
-    });
+    res.render('index',{array:["xD","xD"]});
 });
-server.get("/:search",(req,res) => {
-    
+
+server.get("/image/:rock",(req,res) => {
+    getImage(req.params.rock,20).then(function(imageb64){
+        res.send(imageb64);
+    });
 });
 
 const port = server.get('port');
