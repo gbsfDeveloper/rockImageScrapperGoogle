@@ -21,7 +21,7 @@ h1{
     height: 100%;
     display: flex;
     justify-content: center;
-    align-items: center;
+    /* align-items: center; */
 }
 
 /* INPUT */
@@ -59,7 +59,7 @@ h1{
 #images{
     display: flex;
     flex-wrap: wrap;
-    justify-content: start;
+    justify-content: center;
     margin: 1rem auto;
     width: 90%;
 }
