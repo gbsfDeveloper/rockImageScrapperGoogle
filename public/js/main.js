@@ -12,6 +12,19 @@ function searchImages(value,DOM){
     });
 }
 
+function loadingAnimation(option="add",DOM) {
+    if (option.localeCompare("add") === 0) {
+        let loadingAnimation = `<div class="animContainer"></div>`;
+        DOM.search_images.empty();
+        DOM.search_images.prepend(loadingAnimation);
+    } 
+    else if(option.localeCompare("remove") === 0){
+        if ($(".animContainer").length) {
+            $(".animContainer").remove();
+        }
+    }
+}
+
 $(document).ready(function(){
     let DOM = {
         search_button:$('#buttonSearch'),
@@ -21,13 +34,26 @@ $(document).ready(function(){
 
     DOM.search_button.on("click",function(){
         const searchValue = DOM.search_input.val();
-        searchImages(searchValue,DOM);
+        if(searchValue !== ""){
+            loadingAnimation("add",DOM);      
+            searchImages(searchValue,DOM);
+        }
+        else{
+            DOM.search_images.append(`El campo de texto no puede estar vacio, porfavor escribe el nombre de la roca que quieras buscar`);
+        }
     });
 
     DOM.search_input.on("keyup",function(event){
         if(event.keyCode === 13){
             const searchValue = DOM.search_input.val();
-            searchImages(searchValue,DOM); 
+            if(searchValue !== ""){
+                loadingAnimation("add",DOM);      
+                searchImages(searchValue,DOM);
+            }
+            else{
+                DOM.search_images.append(`El campo de texto no puede estar vacio, porfavor escribe el nombre de la roca que quieras buscar`);
+            }
         }
     });
 });
+
